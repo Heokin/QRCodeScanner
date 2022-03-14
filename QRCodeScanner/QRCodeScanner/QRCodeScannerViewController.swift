@@ -36,7 +36,7 @@ class QRCodeScannerViewController: UIViewController, UIContextMenuInteractionDel
         super.viewDidLoad()
         setupCamera()
         createConstraints()
-        setupMenuNotHiden()
+//        setupMenuNotHiden()
        
     }
     
@@ -105,8 +105,8 @@ class QRCodeScannerViewController: UIViewController, UIContextMenuInteractionDel
     }
     
     //MARK: - Create UI
-    let labelOutlet: UILabel = {
-        let label = UILabel()
+    let labelOutlet: UIButton = {
+        let label = UIButton()
         label.backgroundColor = #colorLiteral(red: 0.858478725, green: 0.7204294801, blue: 0.06100670248, alpha: 1)
         label.tintColor = .white
         label.layer.masksToBounds = true
@@ -132,18 +132,18 @@ let buttonMenu: UIButton = {
 @objc func ButtonTaped() {
     let menuInteraction = UIContextMenuInteraction(delegate: self)
     buttonMenu.addInteraction(menuInteraction)
-//    menuView.isHidden = false
-//    searchWebMenuButton.isHidden = false
-//    copyMenuButton.isHidden = false
-//    urlLAbelOutlet.isHidden = false
-//    urlLAbelOutlet.text = urlHunter
+    menuView.isHidden = false
+    searchWebMenuButton.isHidden = false
+    copyMenuButton.isHidden = false
+    urlLAbelOutlet.isHidden = false
+    urlLAbelOutlet.text = urlHunter
 }
     
     let menuView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 26
         return view
     }()
     
@@ -153,9 +153,6 @@ let buttonMenu: UIButton = {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.1910547316, green: 0.1472589374, blue: 0.1568871737, alpha: 1)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        button.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return button
     }()
     
@@ -165,9 +162,6 @@ let buttonMenu: UIButton = {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.1910547316, green: 0.1472589374, blue: 0.1568871737, alpha: 1)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        button.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return button
     }()
     
@@ -176,55 +170,53 @@ let buttonMenu: UIButton = {
         label.backgroundColor = #colorLiteral(red: 0.1910547316, green: 0.1472589374, blue: 0.1568871737, alpha: 1)
         label.tintColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 10
         return label
     }()
     
-//    func setupMenuWhileHiden() {
-//        view.addSubview(menuView)
-//        NSLayoutConstraint.activate([
-//            menuView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
-//            menuView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-//            menuView.widthAnchor.constraint(equalToConstant: 10),
-//            menuView.heightAnchor.constraint(equalToConstant: 10)
-//        ])
-//    }
-    
-    func setupMenuNotHiden() {
-        print("tapedMenu")
+    func setupMenuWhileHiden() {
         view.addSubview(menuView)
-        view.addSubview(copyMenuButton)
-        view.addSubview(searchWebMenuButton)
-        view.addSubview(urlLAbelOutlet)
-        menuView.isHidden = true
-        searchWebMenuButton.isHidden = true
-        copyMenuButton.isHidden = true
-        urlLAbelOutlet.isHidden = true
         NSLayoutConstraint.activate([
-            menuView.bottomAnchor.constraint(equalTo: buttonMenu.topAnchor, constant: -20),
+            menuView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
             menuView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            menuView.widthAnchor.constraint(equalToConstant: 280),
-            menuView.heightAnchor.constraint(equalToConstant: 150),
-            
-            searchWebMenuButton.bottomAnchor.constraint(equalTo: menuView.bottomAnchor),
-            searchWebMenuButton.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
-            searchWebMenuButton.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
-            searchWebMenuButton.heightAnchor.constraint(equalToConstant: 40),
-            
-            copyMenuButton.bottomAnchor.constraint(equalTo: searchWebMenuButton.topAnchor, constant: -0.5),
-            copyMenuButton.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
-            copyMenuButton.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
-            copyMenuButton.heightAnchor.constraint(equalToConstant: 40),
-            
-            urlLAbelOutlet.bottomAnchor.constraint(equalTo: copyMenuButton.topAnchor, constant: -0.5),
-            urlLAbelOutlet.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
-            urlLAbelOutlet.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
-            urlLAbelOutlet.topAnchor.constraint(equalTo: menuView.topAnchor)
-            
-            
+            menuView.widthAnchor.constraint(equalToConstant: 10),
+            menuView.heightAnchor.constraint(equalToConstant: 10)
         ])
     }
+    
+//    func setupMenuNotHiden() {
+//        print("tapedMenu")
+//        view.addSubview(menuView)
+//        view.addSubview(copyMenuButton)
+//        view.addSubview(searchWebMenuButton)
+//        view.addSubview(urlLAbelOutlet)
+//        menuView.isHidden = true
+//        searchWebMenuButton.isHidden = true
+//        copyMenuButton.isHidden = true
+//        urlLAbelOutlet.isHidden = true
+//        NSLayoutConstraint.activate([
+//            menuView.bottomAnchor.constraint(equalTo: buttonMenu.topAnchor, constant: -20),
+//            menuView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+//            menuView.widthAnchor.constraint(equalToConstant: 240),
+//            menuView.heightAnchor.constraint(equalToConstant: 150),
+//
+//            searchWebMenuButton.bottomAnchor.constraint(equalTo: menuView.bottomAnchor),
+//            searchWebMenuButton.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
+//            searchWebMenuButton.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
+//            searchWebMenuButton.heightAnchor.constraint(equalToConstant: 40),
+//
+//            copyMenuButton.bottomAnchor.constraint(equalTo: searchWebMenuButton.topAnchor, constant: -0.5),
+//            copyMenuButton.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
+//            copyMenuButton.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
+//            copyMenuButton.heightAnchor.constraint(equalToConstant: 40),
+//
+//            urlLAbelOutlet.bottomAnchor.constraint(equalTo: copyMenuButton.topAnchor, constant: -0.5),
+//            urlLAbelOutlet.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
+//            urlLAbelOutlet.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
+//            urlLAbelOutlet.topAnchor.constraint(equalTo: menuView.topAnchor)
+//
+//
+//        ])
+//    }
     
     
     
@@ -239,10 +231,11 @@ let buttonMenu: UIButton = {
             identifier: nil,
             previewProvider: nil) { _  in
                 let copy = UIAction(title: "Copy", image: UIImage(systemName: "safari")) { _ in
-                    
+                    UIPasteboard.general.string = self.urlHunter
                 }
                 let copy1 = UIAction(title: "Search Web", image: UIImage(systemName: "doc.on.doc")) { _ in
-                    
+                    let url = URL(string: self.urlHunter)
+                    UIApplication.shared.open(url!)
                 }
            return UIMenu(title: self.urlHunter, children: [copy, copy1])
         }
@@ -270,11 +263,13 @@ extension QRCodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
                 let imageAttachment = NSTextAttachment()
                 imageAttachment.image = UIImage(systemName: "safari.fill")
 
-                let fullString = NSMutableAttributedString(string: "")
-                fullString.append(NSAttributedString(attachment: imageAttachment))
-                fullString.append(NSAttributedString(string: "Search  "))
-                fullString.append(NSAttributedString(string: "\(urlHunter)"))
-                labelOutlet.attributedText = fullString
+//                let fullString = NSMutableAttributedString(string: "")
+//                fullString.append(NSAttributedString(attachment: imageAttachment))
+//                fullString.append(NSAttributedString(string: "Search  "))
+//                fullString.append(NSAttributedString(string: "\(urlHunter)"))
+//                labelOutlet.attributedText = fullString
+                
+                labelOutlet.setTitle(metadataObj.stringValue, for: .normal)
                 
             }
             
